@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>精神图景 · 锚点</title>
     <style>
-        /* ========== 样式部分（与之前完全一致） ========== */
+        /* ========== 样式部分 ========== */
         * {
             margin: 0;
             padding: 0;
@@ -13,6 +13,7 @@
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
         }
+
         body {
             background-color: #121212;
             color: #e0e0e0;
@@ -24,6 +25,7 @@
             max-width: 100vw;
             overflow-x: hidden;
         }
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -32,6 +34,7 @@
             flex-direction: column;
             gap: 15px;
         }
+
         .header {
             display: flex;
             flex-direction: column;
@@ -49,18 +52,21 @@
             font-size: clamp(10px, 1.5vw, 12px);
             color: #888;
         }
+
         .main-wrap {
             display: flex;
             flex-direction: column;
             gap: 15px;
             width: 100%;
         }
+
         .top-function-area {
             display: flex;
             flex-direction: column;
             gap: 15px;
             width: 100%;
         }
+
         @media (min-width: 768px) {
             .top-function-area {
                 display: grid;
@@ -71,6 +77,7 @@
                 grid-column: span 2;
             }
         }
+
         .card {
             background: #1e1e1e;
             border: 1px solid #333;
@@ -86,6 +93,7 @@
             align-items: center;
             gap: 5px;
         }
+
         .progress-item {
             margin-bottom: 12px;
         }
@@ -110,6 +118,7 @@
             color: #00d9c0;
             font-weight: bold;
         }
+
         .btn-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -147,6 +156,7 @@
             height: 18px;
             fill: currentColor;
         }
+
         .save-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -173,6 +183,7 @@
             border-color: #00d9c0;
             color: #00d9c0;
         }
+
         .content-bottom {
             display: flex;
             flex-direction: column;
@@ -180,6 +191,7 @@
             width: 100%;
             margin-top: 15px;
         }
+
         .story-box {
             background: #1e1e1e;
             border: 1px solid #333;
@@ -192,12 +204,14 @@
             width: 100%;
             font-family: "方正仿宋简体", "FZFS", "Georgia", serif;
         }
+
         .options-title {
             font-size: clamp(12px, 1.8vw, 14px);
             color: #888;
             margin-bottom: 10px;
             width: 100%;
         }
+
         .option-item {
             background: #1e1e1e;
             border: 1px solid #333;
@@ -244,6 +258,7 @@
             flex-shrink: 0;
             font-size: clamp(12px, 1.5vw, 14px);
         }
+
         .start-page {
             display: flex;
             flex-direction: column;
@@ -279,10 +294,12 @@
         .view-status.completed {
             color: #00d9c0;
         }
+
         .game-page {
             display: none;
             width: 100%;
         }
+
         #game-tip {
             position: fixed;
             top: 20px;
@@ -297,6 +314,7 @@
             z-index: 1000;
             max-width: 80%;
         }
+
         .overlay {
             position: fixed;
             top: 0;
@@ -321,6 +339,7 @@
             max-height: 90vh;
             overflow-y: auto;
         }
+
         .ending-box {
             background: #1e1e1e;
             border: 1px solid #00d9c0;
@@ -336,6 +355,7 @@
 <body>
     <div class="container">
         <div id="game-tip"></div>
+
         <div class="header">
             <div class="header-title">精神图景 · 锚点</div>
             <div class="header-sub">SENTINEL-GUIDE SYNCHRONIZATION PROTOCOL V2.4</div>
@@ -363,10 +383,10 @@
                         <div class="progress-item">
                             <div class="progress-label">
                                 <span>同步率</span>
-                                <span class="sync-value" id="sync-value">50%</span>
+                                <span class="sync-value" id="sync-value">10%</span>
                             </div>
                             <div class="progress-bar">
-                                <div class="progress-inner" id="sync-progress" style="width: 50%"></div>
+                                <div class="progress-inner" id="sync-progress" style="width: 10%"></div>
                             </div>
                         </div>
                         <div class="progress-item">
@@ -379,12 +399,13 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="card">
                         <div class="card-title">物证与卷宗收集</div>
                         <div class="progress-item">
                             <div class="progress-label">
                                 <span>记忆碎片</span>
-                                <span id="frag-text">0 / 15</span>
+                                <span id="frag-text">0 / 10</span>
                             </div>
                             <div class="progress-bar">
                                 <div class="progress-inner" id="frag-progress" style="width: 0%"></div>
@@ -393,7 +414,7 @@
                         <div class="progress-item">
                             <div class="progress-label">
                                 <span>特殊物品</span>
-                                <span id="item-text">0 / 6</span>
+                                <span id="item-text">0 / 5</span>
                             </div>
                             <div class="progress-bar">
                                 <div class="progress-inner" id="item-progress" style="width: 0%"></div>
@@ -409,6 +430,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="card full-width">
                         <div class="card-title">功能操作</div>
                         <div class="btn-grid">
@@ -429,6 +451,7 @@
                                 回溯
                             </button>
                         </div>
+
                         <div class="card-title" style="margin-top: 15px;">存档管理</div>
                         <div class="save-grid">
                             <button class="save-btn" id="save-btn-0" onclick="Save.saveGame(0)">存档1</button>
@@ -444,12 +467,14 @@
                             <button class="save-btn" id="load-btn-3" onclick="Save.loadGame(3)">读档4</button>
                             <button class="save-btn" id="load-btn-4" onclick="Save.loadGame(4)">读档5</button>
                         </div>
+
                         <button class="func-btn" onclick="Game.backToStart()" style="width: 100%; margin-top: 10px;">
                             <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
                             返回首页
                         </button>
                     </div>
                 </div>
+
                 <!-- 底部文字和选项 -->
                 <div class="content-bottom">
                     <div class="story-box" id="narrate-text">【请选择视角开始探索】</div>
@@ -483,10 +508,9 @@
     </div>
 
     <script>
-        // ========== 所有JavaScript代码直接内嵌 ==========
-        // 以下内容整合自 data.js, game.js, save.js, ui.js (最终修复版)
+        // ========== 所有JavaScript代码内嵌 ==========
 
-        // ---------- data.js ----------
+        // ---------- 剧情数据 data.js ----------
         const GAME_DATA = {
             chengye: {
                 "chengye_area1_start": {
@@ -500,9 +524,9 @@
                     name: "山脚阔叶林 · 歪斜的树",
                     text: "你走近那几棵歪斜的树。树干上有抓痕——很深，像是某种野兽留下的。",
                     options: [
-                        { text: "用指尖触碰抓痕", syncChange: 5, fragment: "失控的痕迹", nextNode: "chengye_area1_point1_after" },
-                        { text: "让狼王嗅闻抓痕", syncChange: 5, nextNode: "chengye_area1_point1_after" },
-                        { text: "用精神力感知抓痕上的情绪残留", syncChange: 5, cost: { type: "精神力", value: 5 }, hiddenPerception: "他独自扛过很多次", nextNode: "chengye_area1_point1_after" }
+                        { text: "用指尖触碰抓痕", syncChange: 2, fragment: "失控的痕迹", nextNode: "chengye_area1_point1_after" },
+                        { text: "让狼王嗅闻抓痕", syncChange: 1, nextNode: "chengye_area1_point1_after" },
+                        { text: "用精神力感知抓痕上的情绪残留", syncChange: 2, cost: { type: "精神力", value: 5 }, hiddenPerception: "他独自扛过很多次", nextNode: "chengye_area1_point1_after" }
                     ]
                 },
                 "chengye_area1_point1_after": {
@@ -516,9 +540,9 @@
                     name: "山脚阔叶林 · 落叶的异常",
                     text: "地上有一片落叶，颜色比周围的树叶深。你捡起来看——这不是阔叶林的叶子，是针叶林才有的松针。",
                     options: [
-                        { text: "顺着松针散落的方向走", syncChange: 3, exploreChange: 10, hiddenPerception: "发现隐秘小径", nextNode: "chengye_area1_point3" },
-                        { text: "让狼王闻松针", syncChange: 5, hiddenPerception: "江砚白最近去过山顶", nextNode: "chengye_area1_point3" },
-                        { text: "把松针收起来", syncChange: 3, item: "来自山腰的松针", nextNode: "chengye_area1_point3" }
+                        { text: "顺着松针散落的方向走", syncChange: 2, exploreChange: 10, hiddenPerception: "发现隐秘小径", nextNode: "chengye_area1_point3" },
+                        { text: "让狼王闻松针", syncChange: 2, hiddenPerception: "江砚白最近去过山顶", nextNode: "chengye_area1_point3" },
+                        { text: "把松针收起来", syncChange: 1, item: "来自山腰的松针", nextNode: "chengye_area1_point3" }
                     ]
                 },
                 "chengye_area1_point3": {
@@ -526,9 +550,9 @@
                     name: "山脚阔叶林 · 扭曲的鸟鸣",
                     text: "你听见鸟鸣声忽远忽近，音调扭曲得像坏掉的录音带。",
                     options: [
-                        { text: "启用超听觉，捕捉鸟鸣的真实来源", syncChange: 5, cost: { type: "精神力", value: 10 }, hiddenPerception: "声音来自山腰东侧", nextNode: "chengye_area1_point4" },
-                        { text: "尝试用精神力和这些声音建立联系", syncChange: 10, cost: { type: "精神力", value: 15 }, hiddenPerception: "他害怕失去", nextNode: "chengye_area1_point4" },
-                        { text: "忽略声音，继续前进", syncChange: 0, nextNode: "chengye_area1_point4" }
+                        { text: "启用超听觉，捕捉鸟鸣的真实来源", syncChange: 2, cost: { type: "精神力", value: 10 }, hiddenPerception: "声音来自山腰东侧", nextNode: "chengye_area1_point4" },
+                        { text: "尝试用精神力和这些声音建立联系", syncChange: 3, cost: { type: "精神力", value: 15 }, hiddenPerception: "他害怕失去", nextNode: "chengye_area1_point4" },
+                        { text: "忽略声音，继续前进", syncChange: -2, nextNode: "chengye_area1_point4" }
                     ]
                 },
                 "chengye_area1_point4": {
@@ -536,9 +560,9 @@
                     name: "山脚阔叶林 · 小径分岔",
                     text: "山路出现分岔。左边是缓坡，铺满落叶；右边是陡峭的石阶，看起来更难走。",
                     options: [
-                        { text: "走缓坡", syncChange: 2, exploreChange: 0, nextNode: "chengye_area2_start" },
-                        { text: "走石阶", syncChange: 8, cost: { type: "体力" }, hiddenPerception: "江砚白常走这条路", nextNode: "chengye_area2_start" },
-                        { text: "停下来，先让狼王探路", syncChange: 5, hiddenPerception: "石阶通往他所在的位置", nextNode: "chengye_area2_start" }
+                        { text: "走缓坡", syncChange: 0, exploreChange: 0, nextNode: "chengye_area2_start" },
+                        { text: "走石阶", syncChange: 3, cost: { type: "体力" }, hiddenPerception: "江砚白常走这条路", nextNode: "chengye_area2_start" },
+                        { text: "停下来，先让狼王探路", syncChange: 2, hiddenPerception: "石阶通往他所在的位置", nextNode: "chengye_area2_start" }
                     ]
                 },
                 "chengye_area2_start": {
@@ -552,9 +576,9 @@
                     name: "山腰针叶林 · 雾中的身影",
                     text: "雾气深处，有一个模糊的人影。\n\n你走近几步——那个人影也在动，像是朝你走来。但等你再靠近，它又消失了。",
                     options: [
-                        { text: "启用超听觉，捕捉雾中的声音", syncChange: 10, cost: { type: "精神力", value: 10 }, hiddenPerception: "他在说话，他让你别过去", nextNode: "chengye_area2_point2" },
-                        { text: "让狼王追上去", syncChange: 10, item: "染血的羽毛", nextNode: "chengye_area2_point2" },
-                        { text: "用自己的精神力感知", syncChange: 8, cost: { type: "精神力", value: 15 }, hiddenPerception: "他在期待你", nextNode: "chengye_area2_point2" }
+                        { text: "启用超听觉，捕捉雾中的声音", syncChange: 3, cost: { type: "精神力", value: 10 }, hiddenPerception: "他在说话，他让你别过去", nextNode: "chengye_area2_point2" },
+                        { text: "让狼王追上去", syncChange: 3, item: "染血的羽毛", nextNode: "chengye_area2_point2" },
+                        { text: "用自己的精神力感知", syncChange: 3, cost: { type: "精神力", value: 15 }, hiddenPerception: "他在期待你", nextNode: "chengye_area2_point2" }
                     ]
                 },
                 "chengye_area2_point2": {
@@ -562,10 +586,10 @@
                     name: "山腰针叶林 · 断裂的悬崖",
                     text: "你走到一处悬崖边。边缘的岩石在崩落，一块接一块地坠入看不见的深谷。\n\n悬崖对面，隐约能看见另一片山林——那是通往山顶的路。\n\n但你过不去。中间的裂缝太宽了。",
                     options: [
-                        { text: "试图跳过去", syncChange: -10, nextNode: "chengye_area2_point2" },
-                        { text: "寻找其他路", syncChange: 3, exploreChange: 5, nextNode: "chengye_area2_point3" },
-                        { text: "让狼王试试看", syncChange: 5, nextNode: "chengye_area2_point2_after" },
-                        { text: "用自己的精神力尝试修补裂缝", syncChange: 15, cost: { type: "精神力", value: 20 }, hiddenPerception: "你稳定了这一小段悬崖", nextNode: "chengye_area2_point3" }
+                        { text: "试图跳过去", syncChange: -8, nextNode: "chengye_area2_point2" },
+                        { text: "寻找其他路", syncChange: 1, exploreChange: 5, nextNode: "chengye_area2_point3" },
+                        { text: "让狼王试试看", syncChange: 2, nextNode: "chengye_area2_point2_after" },
+                        { text: "用自己的精神力尝试修补裂缝", syncChange: 5, cost: { type: "精神力", value: 20 }, hiddenPerception: "你稳定了这一小段悬崖", nextNode: "chengye_area2_point3" }
                     ]
                 },
                 "chengye_area2_point2_after": {
@@ -579,9 +603,9 @@
                     name: "山腰针叶林 · 山涧的回声",
                     text: "你循着水声找到一条山涧。水很清，但看不见底。水面上漂着几片奇怪的叶子——不是针叶林的叶子，是钢铁森林里才会有的、沾着城市灰尘的叶子。\n\n你蹲下来，伸手触碰水面。",
                     options: [
-                        { text: "直接用手捧水", syncChange: 10, hiddenPerception: "他的图景里，倒映着你的树", nextNode: "chengye_area2_point4" },
-                        { text: "让狼王喝水", syncChange: 8, nextNode: "chengye_area2_point4" },
-                        { text: "用精神力探入水中", syncChange: 10, cost: { type: "精神力", value: 15 }, hiddenPerception: "他想走进你的图景", nextNode: "chengye_area2_point4" }
+                        { text: "直接用手捧水", syncChange: 4, hiddenPerception: "他的图景里，倒映着你的树", nextNode: "chengye_area2_point4" },
+                        { text: "让狼王喝水", syncChange: 3, nextNode: "chengye_area2_point4" },
+                        { text: "用精神力探入水中", syncChange: 4, cost: { type: "精神力", value: 15 }, hiddenPerception: "他想走进你的图景", nextNode: "chengye_area2_point4" }
                     ]
                 },
                 "chengye_area2_point4": {
@@ -589,9 +613,9 @@
                     name: "山腰针叶林 · 记忆碎片",
                     text: "雾气忽然散开一角，露出一小片空地。\n\n空地上有一个透明的、漂浮的发光碎片。\n\n记忆碎片。\n\n你走过去，伸手触碰——\n\n画面闪现：\n\n审讯室。惨白的灯光。江砚白坐在桌子这一边，对面是一个罪犯。罪犯在笑，说着什么，那些话像刀子一样锋利。\n\n江砚白的表情平静。他的手放在桌上，一动不动。\n\n但你知道——你的感知告诉你——他的手在微微发抖。\n\n那是他第一次接触人性的极端黑暗。那个罪犯说的话，后来在他脑海里回响了很久很久。\n\n他用了很久才消化掉那段记忆。他一个人。\n\n碎片消散前，你感知到他的情绪：\n\n当时的恐惧。\n后来的释然。\n还有一个念头——\n\n“幸好程野不用经历这些。”\n\n你站在空地上，很久没动。",
                     options: [
-                        { text: "记住这个念头", syncChange: 5, fragment: "他在黑暗里想过你", nextNode: "chengye_area2_point5" },
-                        { text: "对着消散的碎片说话：“但我愿意经历你的所有。”", syncChange: 10, nextNode: "chengye_area2_point5" },
-                        { text: "让狼王记住这个地方", syncChange: 5, nextNode: "chengye_area2_point5" }
+                        { text: "记住这个念头", syncChange: 2, fragment: "他在黑暗里想过你", nextNode: "chengye_area2_point5" },
+                        { text: "对着消散的碎片说话：“但我愿意经历你的所有。”", syncChange: 4, nextNode: "chengye_area2_point5" },
+                        { text: "让狼王记住这个地方", syncChange: 2, nextNode: "chengye_area2_point5" }
                     ]
                 },
                 "chengye_area2_point5": {
@@ -599,9 +623,9 @@
                     name: "山腰针叶林 · 信鸽的踪迹",
                     text: "你在地上发现几片灰白色的羽毛，还有一小摊血迹。\n\n血迹。\n\n你的心猛地抽紧。",
                     options: [
-                        { text: "启用超嗅觉，追踪血迹", syncChange: 8, cost: { type: "精神力", value: 10 }, hiddenPerception: "发现隐蔽山洞", nextNode: "chengye_hidden_cave" },
-                        { text: "让狼王带路", syncChange: 5, nextNode: "chengye_hidden_cave" },
-                        { text: "捡起羽毛，轻声呼唤", syncChange: 10, cost: { type: "精神力", value: 5 }, nextNode: "chengye_hidden_cave" }
+                        { text: "启用超嗅觉，追踪血迹", syncChange: 3, cost: { type: "精神力", value: 10 }, hiddenPerception: "发现隐蔽山洞", nextNode: "chengye_hidden_cave" },
+                        { text: "让狼王带路", syncChange: 2, nextNode: "chengye_hidden_cave" },
+                        { text: "捡起羽毛，轻声呼唤", syncChange: 4, cost: { type: "精神力", value: 5 }, nextNode: "chengye_hidden_cave" }
                     ]
                 },
                 "chengye_hidden_cave": {
@@ -609,9 +633,9 @@
                     name: "隐藏区域 · 山腰山洞",
                     text: "山洞不大，但很深。洞壁上有发光的苔藓，照亮了前路。\n\n你的脚步声在洞里回响，一下，一下。\n\n狼王走在你身边，安静得不像它。\n\n走到最深处——\n\n信鸽蜷缩在一块石头上，翅膀上有一道伤口，正在流血。它看见你，想飞起来，但动不了。\n\n旁边，江砚白靠坐在洞壁边，闭着眼，脸色苍白。\n\n他的精神体受伤了。他也受伤了。\n\n你的心狠狠揪了一下。",
                     options: [
-                        { text: "先查看信鸽", syncChange: 15, fragment: "信鸽治愈", nextNode: "chengye_hidden_cave_dialogue" },
-                        { text: "先查看江砚白", syncChange: 15, cost: { type: "精神力", value: 10 }, nextNode: "chengye_hidden_cave_dialogue" },
-                        { text: "同时触碰他们两个", syncChange: 20, cost: { type: "精神力", value: 20 }, fragment: "双向治愈", nextNode: "chengye_hidden_cave_dialogue" }
+                        { text: "先查看信鸽", syncChange: 5, fragment: "信鸽治愈", nextNode: "chengye_hidden_cave_dialogue" },
+                        { text: "先查看江砚白", syncChange: 5, cost: { type: "精神力", value: 10 }, nextNode: "chengye_hidden_cave_dialogue" },
+                        { text: "同时触碰他们两个", syncChange: 8, cost: { type: "精神力", value: 20 }, fragment: "双向治愈", nextNode: "chengye_hidden_cave_dialogue" }
                     ]
                 },
                 "chengye_hidden_cave_dialogue": {
@@ -619,9 +643,9 @@
                     name: "隐藏区域 · 山洞对话",
                     text: "江砚白睁开眼，看着你。\n\n他的眼睛里有短暂的茫然，然后渐渐聚焦。\n\n“......程野。”\n\n“嗯。”\n\n“你怎么找到这里的？”",
                     options: [
-                        { text: "“跟着血迹来的。”", syncChange: 5, hiddenPerception: "你不想再看见他受伤", nextNode: "chengye_hidden_cave_after" },
-                        { text: "“鸽子带我来的。”", syncChange: 8, nextNode: "chengye_hidden_cave_after" },
-                        { text: "“我总能找到你。”", syncChange: 15, nextNode: "chengye_hidden_cave_after" }
+                        { text: "“跟着血迹来的。”", syncChange: 2, hiddenPerception: "你不想再看见他受伤", nextNode: "chengye_hidden_cave_after" },
+                        { text: "“鸽子带我来的。”", syncChange: 3, nextNode: "chengye_hidden_cave_after" },
+                        { text: "“我总能找到你。”", syncChange: 5, nextNode: "chengye_hidden_cave_after" }
                     ]
                 },
                 "chengye_hidden_cave_after": {
@@ -629,9 +653,9 @@
                     name: "隐藏区域 · 山洞深处",
                     text: "沉默片刻。\n\n江砚白：“这里......是我藏起来的地方。”\n\n“藏什么？”\n\n他没有回答。\n\n但你懂了。\n\n藏那些不想让人看见的脆弱，藏那些独自消化的黑暗，藏那些不能说出口的情绪。\n\n藏那些——他不想让你担心，所以从来不说的事。",
                     options: [
-                        { text: "不再追问，只是扶他起来", syncChange: 10, fragment: "沉默的陪伴", nextNode: "chengye_hidden_cave_exit" },
-                        { text: "说：“以后可以不用藏。”", syncChange: 15, nextNode: "chengye_hidden_cave_exit" },
-                        { text: "让狼王进来", syncChange: 10, nextNode: "chengye_hidden_cave_exit" }
+                        { text: "不再追问，只是扶他起来", syncChange: 4, fragment: "沉默的陪伴", nextNode: "chengye_hidden_cave_exit" },
+                        { text: "说：“以后可以不用藏。”", syncChange: 6, nextNode: "chengye_hidden_cave_exit" },
+                        { text: "让狼王进来", syncChange: 4, nextNode: "chengye_hidden_cave_exit" }
                     ]
                 },
                 "chengye_hidden_cave_exit": {
@@ -653,9 +677,9 @@
                     name: "山顶草甸 · 草甸上的痕迹",
                     text: "你走近他，但没有立刻出声。\n\n草甸上有一条被人踩过的路，从你站的地方一直延伸到江砚白站的地方。那是他平时走的路。\n\n路的两旁，有些地方的草格外茂盛，有些地方的草稀疏。",
                     options: [
-                        { text: "看茂盛的草", syncChange: 8, hiddenPerception: "他在这里想过你", nextNode: "chengye_area3_point2" },
-                        { text: "看稀疏的草", syncChange: 8, hiddenPerception: "他在这里独自消化黑暗", nextNode: "chengye_area3_point2" },
-                        { text: "让狼王沿着路走", syncChange: 5, nextNode: "chengye_area3_point2" }
+                        { text: "看茂盛的草", syncChange: 3, hiddenPerception: "他在这里想过你", nextNode: "chengye_area3_point2" },
+                        { text: "看稀疏的草", syncChange: -2, hiddenPerception: "他在这里独自消化黑暗", nextNode: "chengye_area3_point2" },
+                        { text: "让狼王沿着路走", syncChange: 2, nextNode: "chengye_area3_point2" }
                     ]
                 },
                 "chengye_area3_point2": {
@@ -663,9 +687,9 @@
                     name: "山顶草甸 · 海面上的倒影",
                     text: "你走近江砚白，站在他身边，一起看着海。\n\n海面上，除了天空的倒影，还有别的——\n\n一座城市。钢铁森林。霓虹灯牌闪烁，高架桥交错。\n\n那是你的精神图景。",
                     options: [
-                        { text: "指着海面：“那是......”", syncChange: 5, hiddenPerception: "他一直能看见你", nextNode: "chengye_area3_point3" },
-                        { text: "沉默地看着，心跳加快", syncChange: 10, nextNode: "chengye_area3_point3" },
-                        { text: "问：“你什么时候开始能看见的？”", syncChange: 12, hiddenPerception: "他从第一天就开始看着你", nextNode: "chengye_area3_point3" }
+                        { text: "指着海面：“那是......”", syncChange: 2, hiddenPerception: "他一直能看见你", nextNode: "chengye_area3_point3" },
+                        { text: "沉默地看着，心跳加快", syncChange: 4, nextNode: "chengye_area3_point3" },
+                        { text: "问：“你什么时候开始能看见的？”", syncChange: 5, hiddenPerception: "他从第一天就开始看着你", nextNode: "chengye_area3_point3" }
                     ]
                 },
                 "chengye_area3_point3": {
@@ -673,9 +697,9 @@
                     name: "山顶草甸 · 信鸽的归来",
                     text: "信鸽从远处飞来，落在江砚白肩头。它的伤已经好了，羽毛也恢复了光泽。\n\n它歪着头看你，然后飞起来，落在你肩上。\n\n江砚白侧头看着这一幕。",
                     options: [
-                        { text: "伸手摸了摸信鸽", syncChange: 8, nextNode: "chengye_area3_point4" },
-                        { text: "说：“它好像喜欢我。”", syncChange: 12, hiddenPerception: "他脱口而出的话", nextNode: "chengye_area3_point4" },
-                        { text: "让狼王站起来", syncChange: 10, hiddenPerception: "它们比你们自在", nextNode: "chengye_area3_point4" }
+                        { text: "伸手摸了摸信鸽", syncChange: 3, nextNode: "chengye_area3_point4" },
+                        { text: "说：“它好像喜欢我。”", syncChange: 4, hiddenPerception: "他脱口而出的话", nextNode: "chengye_area3_point4" },
+                        { text: "让狼王站起来", syncChange: 4, hiddenPerception: "它们比你们自在", nextNode: "chengye_area3_point4" }
                     ]
                 },
                 "chengye_area3_point4": {
@@ -683,9 +707,9 @@
                     name: "山顶草甸 · 风的方向",
                     text: "山顶的风一直吹着，从海面吹向陆地。\n\n但你忽然发现，有一瞬间，风向变了——从你身后吹向海面。\n\n那一缕风里，带着钢铁森林的气息：金属、混凝土、城市的烟火气。\n\n那是从你的精神图景吹来的风。",
                     options: [
-                        { text: "闭上眼，感受这缕风", syncChange: 10, hiddenPerception: "你们之间有看不见的通道", nextNode: "chengye_area3_core" },
-                        { text: "问江砚白：“你也能感受到吗？”", syncChange: 12, hiddenPerception: "他一直能感觉到你", nextNode: "chengye_area3_core" },
-                        { text: "轻声说：“原来我们之间，一直有风。”", syncChange: 15, hiddenPerception: "风知道", nextNode: "chengye_area3_core" }
+                        { text: "闭上眼，感受这缕风", syncChange: 4, hiddenPerception: "你们之间有看不见的通道", nextNode: "chengye_area3_core" },
+                        { text: "问江砚白：“你也能感受到吗？”", syncChange: 5, hiddenPerception: "他一直能感觉到你", nextNode: "chengye_area3_core" },
+                        { text: "轻声说：“原来我们之间，一直有风。”", syncChange: 6, hiddenPerception: "风知道", nextNode: "chengye_area3_core" }
                     ]
                 },
                 "chengye_area3_core": {
@@ -693,9 +717,9 @@
                     name: "核心场景 · 山顶对话",
                     text: "你们并肩站着，看了很久的海。\n\n最后，江砚白开口：\n\n“你是第二个来这里的人。”\n\n你侧头看他。\n\n他没看你，继续看着海：\n\n“第一个是我自己。”\n\n你的心跳漏了一拍。",
                     options: [
-                        { text: "“我很荣幸。”", syncChange: 10, nextNode: "chengye_area3_core_after" },
-                        { text: "沉默，等他说下去", syncChange: 15, nextNode: "chengye_area3_core_after" },
-                        { text: "“那我能不能......经常来？”", syncChange: 20, nextNode: "chengye_area3_core_after" }
+                        { text: "“我很荣幸。”", syncChange: 4, nextNode: "chengye_area3_core_after" },
+                        { text: "沉默，等他说下去", syncChange: 6, nextNode: "chengye_area3_core_after" },
+                        { text: "“那我能不能......经常来？”", syncChange: 8, nextNode: "chengye_area3_core_after" }
                     ]
                 },
                 "chengye_area3_core_after": {
@@ -703,9 +727,9 @@
                     name: "核心场景 · 目光",
                     text: "江砚白转过头来看你。\n\n那一瞬间，风停了。\n\n他的眼睛里有东西在动——那是你从未见过的东西，像海面下涌动的暗流。\n\n你的喉咙发紧。你想说点什么，却发现自己的嘴唇在微微发抖。\n\n然后他移开了视线。\n\n“该出去了。”他说，声音比平时低了一点，“外面还有人在等你。”",
                     options: [
-                        { text: "“好。”", syncChange: 5, nextNode: "chengye_area3_farewell" },
-                        { text: "站着没动，再看了他一眼", syncChange: 10, nextNode: "chengye_area3_farewell" },
-                        { text: "说：“砚白哥。”", syncChange: 15, nextNode: "chengye_area3_farewell" }
+                        { text: "“好。”", syncChange: 2, nextNode: "chengye_area3_farewell" },
+                        { text: "站着没动，再看了他一眼", syncChange: 4, nextNode: "chengye_area3_farewell" },
+                        { text: "说：“砚白哥。”", syncChange: 6, nextNode: "chengye_area3_farewell" }
                     ]
                 },
                 "chengye_area3_farewell": {
@@ -713,9 +737,9 @@
                     name: "离开前的瞬间",
                     text: "你转身，准备离开。\n\n走出两步——\n\n“阿野。”\n\n你的脚步猛地停住。\n\n那是他的声音，很轻，被风吹得有点散。\n\n你回过头。\n\n他还站在原地，背对着你，看着海。风吹起他的衣摆，信鸽落在他肩上。\n\n“下次想来看海，”他说，“不用等我被困。”\n\n你站在原地，心跳擂鼓。",
                     options: [
-                        { text: "“好。”", syncChange: 10, nextNode: "chengye_ending_trigger" },
-                        { text: "“我会来的。”", syncChange: 15, nextNode: "chengye_ending_trigger" },
-                        { text: "走回去，站在他身边", syncChange: 20, nextNode: "chengye_ending_trigger" }
+                        { text: "“好。”", syncChange: 4, nextNode: "chengye_ending_trigger" },
+                        { text: "“我会来的。”", syncChange: 6, nextNode: "chengye_ending_trigger" },
+                        { text: "走回去，站在他身边", syncChange: 8, nextNode: "chengye_ending_trigger" }
                     ]
                 },
                 "chengye_ending_trigger": {
@@ -738,9 +762,9 @@
                     name: "桥墩上的爪痕",
                     text: "你走近那些爪痕。很深，像是狼王在这里磨过爪子，一遍又一遍。",
                     options: [
-                        { text: "伸手触碰爪痕", syncChange: 5, hiddenPerception: "狼王一直在等你", nextNode: "jiangyanbai_area1_point1_after" },
-                        { text: "问狼王：“你经常在这里等？”", syncChange: 5, nextNode: "jiangyanbai_area1_point1_after" },
-                        { text: "用自己的精神力感知爪痕上的残留", syncChange: 8, cost: { type: "精神力", value: 5 }, hiddenPerception: "你感知到了等待的漫长", nextNode: "jiangyanbai_area1_point1_after" }
+                        { text: "伸手触碰爪痕", syncChange: 2, hiddenPerception: "狼王一直在等你", nextNode: "jiangyanbai_area1_point1_after" },
+                        { text: "问狼王：“你经常在这里等？”", syncChange: 2, nextNode: "jiangyanbai_area1_point1_after" },
+                        { text: "用自己的精神力感知爪痕上的残留", syncChange: 3, cost: { type: "精神力", value: 5 }, hiddenPerception: "你感知到了等待的漫长", nextNode: "jiangyanbai_area1_point1_after" }
                     ]
                 },
                 "jiangyanbai_area1_point1_after": {
@@ -754,9 +778,9 @@
                     name: "第一片落叶",
                     text: "高架桥下的地面上，散落着一些东西——几片枯叶，一根羽毛，一小截被咬过的树枝。",
                     options: [
-                        { text: "捡起羽毛", syncChange: 5, item: "信鸽的羽毛（来自程野的收藏）", nextNode: "jiangyanbai_area1_point3" },
-                        { text: "看那截树枝", syncChange: 5, hiddenPerception: "程野的图景里有你的东西", nextNode: "jiangyanbai_area1_point3" },
-                        { text: "让信鸽飞下来", syncChange: 5, nextNode: "jiangyanbai_area1_point3" }
+                        { text: "捡起羽毛", syncChange: 2, item: "信鸽的羽毛（来自程野的收藏）", nextNode: "jiangyanbai_area1_point3" },
+                        { text: "看那截树枝", syncChange: 2, hiddenPerception: "程野的图景里有你的东西", nextNode: "jiangyanbai_area1_point3" },
+                        { text: "让信鸽飞下来", syncChange: 2, nextNode: "jiangyanbai_area1_point3" }
                     ]
                 },
                 "jiangyanbai_area1_point3": {
@@ -764,9 +788,9 @@
                     name: "高架桥的方向",
                     text: "高架桥有两个方向。一条通向更深的城市中心，那里灯火更密；一条通向废弃厂区，那里更暗、更静。\n\n狼王站在通向城市中心的方向，回头看你。\n\n信鸽却飞向了废弃厂区，在空中盘旋。",
                     options: [
-                        { text: "跟着狼王走", syncChange: 3, nextNode: "jiangyanbai_area2_start" },
-                        { text: "跟着信鸽走", syncChange: 5, nextNode: "jiangyanbai_area2_start" },
-                        { text: "停下来感知程野的位置", syncChange: 10, cost: { type: "精神力", value: 10 }, hiddenPerception: "程野的精神力分裂了", nextNode: "jiangyanbai_area1_point4" }
+                        { text: "跟着狼王走", syncChange: 2, nextNode: "jiangyanbai_area2_start" },
+                        { text: "跟着信鸽走", syncChange: 3, nextNode: "jiangyanbai_area2_start" },
+                        { text: "停下来感知程野的位置", syncChange: 4, cost: { type: "精神力", value: 10 }, hiddenPerception: "程野的精神力分裂了", nextNode: "jiangyanbai_area1_point4" }
                     ]
                 },
                 "jiangyanbai_area1_point4": {
@@ -774,9 +798,9 @@
                     name: "城市的风",
                     text: "站在高架桥下，你感觉到风在变化。\n\n有时候，风从城市深处吹来，带着烟火气和温暖。\n\n有时候，风突然转向，从你身后吹来——那是从你精神图景吹来的风，带着海的味道和松木的清香。",
                     options: [
-                        { text: "闭上眼感受风的来去", syncChange: 8, hiddenPerception: "你们之间有风", nextNode: "jiangyanbai_area1_point5" },
-                        { text: "问狼王：“你能感觉到我的风吗？”", syncChange: 5, nextNode: "jiangyanbai_area1_point5" },
-                        { text: "轻声说：“原来他也能感觉到我。”", syncChange: 8, hiddenPerception: "他也能感觉到你", nextNode: "jiangyanbai_area1_point5" }
+                        { text: "闭上眼感受风的来去", syncChange: 3, hiddenPerception: "你们之间有风", nextNode: "jiangyanbai_area1_point5" },
+                        { text: "问狼王：“你能感觉到我的风吗？”", syncChange: 2, nextNode: "jiangyanbai_area1_point5" },
+                        { text: "轻声说：“原来他也能感觉到我。”", syncChange: 4, hiddenPerception: "他也能感觉到你", nextNode: "jiangyanbai_area1_point5" }
                     ]
                 },
                 "jiangyanbai_area1_point5": {
@@ -784,9 +808,9 @@
                     name: "第一座大厦",
                     text: "高架桥尽头，第一座玻璃幕墙大厦矗立在路口。\n\n你走近时，忽然发现——玻璃幕墙上映出的不是你的脸。\n\n是画面。",
                     options: [
-                        { text: "看第一块幕墙", syncChange: 5, hiddenPerception: "他看见你的温和", nextNode: "jiangyanbai_area2_start" },
-                        { text: "看第二块幕墙", syncChange: 5, hiddenPerception: "他也看见你的黑暗", nextNode: "jiangyanbai_area2_start" },
-                        { text: "看第三块幕墙", syncChange: 10, hiddenPerception: "他看见你最私密的地方", nextNode: "jiangyanbai_area2_start" }
+                        { text: "看第一块幕墙", syncChange: 2, hiddenPerception: "他看见你的温和", nextNode: "jiangyanbai_area2_start" },
+                        { text: "看第二块幕墙", syncChange: 2, hiddenPerception: "他也看见你的黑暗", nextNode: "jiangyanbai_area2_start" },
+                        { text: "看第三块幕墙", syncChange: 4, hiddenPerception: "他看见你最私密的地方", nextNode: "jiangyanbai_area2_start" }
                     ]
                 },
                 "jiangyanbai_area2_start": {
@@ -800,9 +824,9 @@
                     name: "第一座厂房",
                     text: "你推开生锈的铁门，走进去。\n\n厂房里空荡荡的，只有一些废弃的机械。但墙上有东西——一幅幅画面，像投影一样在墙上播放。\n\n第一幅画面：\n\n程野第一次出任务。很年轻，眼神里还有警校生的青涩。他在追一个人，跑得很快。最后追上了，但那人回头时，手里有刀。程野躲开了，刀锋擦过他脸侧——没有伤到，只差一点。",
                     options: [
-                        { text: "伸手触碰画面", syncChange: 8, fragment: "第一次任务", hiddenPerception: "他那时候就在想你", nextNode: "jiangyanbai_area2_point2" },
-                        { text: "只是看着，不动", syncChange: 5, nextNode: "jiangyanbai_area2_point2" },
-                        { text: "问狼王：“他当时回来怎么说的？”", syncChange: 5, hiddenPerception: "他什么都没说", nextNode: "jiangyanbai_area2_point2" }
+                        { text: "伸手触碰画面", syncChange: 3, fragment: "第一次任务", hiddenPerception: "他那时候就在想你", nextNode: "jiangyanbai_area2_point2" },
+                        { text: "只是看着，不动", syncChange: 2, nextNode: "jiangyanbai_area2_point2" },
+                        { text: "问狼王：“他当时回来怎么说的？”", syncChange: 2, hiddenPerception: "他什么都没说", nextNode: "jiangyanbai_area2_point2" }
                     ]
                 },
                 "jiangyanbai_area2_point2": {
@@ -810,9 +834,9 @@
                     name: "第二座厂房",
                     text: "第二座厂房更大，墙上也有画面。\n\n程野和几个队友一起追捕嫌犯。嫌犯跑进一栋楼，程野第一个冲进去。楼里很黑，他打开手电，一点一点搜索。忽然有人从暗处冲出来——程野反应很快，躲开了，但队友在后面。他一把推开队友，自己撞在墙上。\n\n画面里，他撞得很重，但站起来时只是揉了揉肩膀，继续追。",
                     options: [
-                        { text: "感知他的情绪", syncChange: 5, fragment: "推开队友", hiddenPerception: "他总是在保护别人", nextNode: "jiangyanbai_area2_point3" },
-                        { text: "注意到一个细节", syncChange: 8, hiddenPerception: "他撞墙时在想你", nextNode: "jiangyanbai_area2_point3" },
-                        { text: "问狼王：“他后来去医务室了吗？”", syncChange: 3, nextNode: "jiangyanbai_area2_point3" }
+                        { text: "感知他的情绪", syncChange: 2, fragment: "推开队友", hiddenPerception: "他总是在保护别人", nextNode: "jiangyanbai_area2_point3" },
+                        { text: "注意到一个细节", syncChange: 3, hiddenPerception: "他撞墙时在想你", nextNode: "jiangyanbai_area2_point3" },
+                        { text: "问狼王：“他后来去医务室了吗？”", syncChange: 1, nextNode: "jiangyanbai_area2_point3" }
                     ]
                 },
                 "jiangyanbai_area2_point3": {
@@ -820,9 +844,9 @@
                     name: "管道迷宫",
                     text: "厂区深处，是一片生锈的管道迷宫。管道纵横交错，有些地方很低，需要弯腰才能通过。\n\n狼王朝一个方向跑去，很快消失在管道间。\n\n你等了等，它没回来。",
                     options: [
-                        { text: "跟着狼王的方向走", syncChange: 5, nextNode: "jiangyanbai_hidden_pipe" },
-                        { text: "释放信鸽探路", syncChange: 5, nextNode: "jiangyanbai_hidden_pipe" },
-                        { text: "用自己的精神力感知", syncChange: 10, cost: { type: "精神力", value: 10 }, nextNode: "jiangyanbai_hidden_pipe" }
+                        { text: "跟着狼王的方向走", syncChange: 2, nextNode: "jiangyanbai_hidden_pipe" },
+                        { text: "释放信鸽探路", syncChange: 2, nextNode: "jiangyanbai_hidden_pipe" },
+                        { text: "用自己的精神力感知", syncChange: 3, cost: { type: "精神力", value: 10 }, nextNode: "jiangyanbai_hidden_pipe" }
                     ]
                 },
                 "jiangyanbai_hidden_pipe": {
@@ -830,9 +854,9 @@
                     name: "隐藏区域 · 管道空间",
                     text: "你走进那个小空间。\n\n狼王在这里。它卧在地上，头枕着前爪。\n\n旁边，有一小块空地，地上铺着一些干草和羽毛——是狼王给自己做的窝。\n\n但它很少睡在这里。因为这里，是程野每次任务后来'消化'情绪的地方。\n\n你感知到的疲惫和委屈，就是他从这里留下的。",
                     options: [
-                        { text: "伸手触碰那些干草", syncChange: 10, hiddenPerception: "他在这里消化不能说的事", nextNode: "jiangyanbai_area2_point4" },
-                        { text: "捡起一根羽毛", syncChange: 10, item: "隐藏的羽毛", nextNode: "jiangyanbai_area2_point4" },
-                        { text: "只是看着，不说话", syncChange: 5, nextNode: "jiangyanbai_area2_point4" }
+                        { text: "伸手触碰那些干草", syncChange: 4, hiddenPerception: "他在这里消化不能说的事", nextNode: "jiangyanbai_area2_point4" },
+                        { text: "捡起一根羽毛", syncChange: 4, item: "隐藏的羽毛", nextNode: "jiangyanbai_area2_point4" },
+                        { text: "只是看着，不说话", syncChange: 2, nextNode: "jiangyanbai_area2_point4" }
                     ]
                 },
                 "jiangyanbai_area2_point4": {
@@ -840,9 +864,9 @@
                     name: "生锈的楼梯",
                     text: "厂区最深处，有一架生锈的楼梯，通向一个高处的平台。\n\n楼梯看起来很危险，有些踏板已经锈穿了。\n\n狼王在楼梯下停下来，抬头看着上面，然后回头看你——它想上去，但它在等你决定。",
                     options: [
-                        { text: "试着走上去", syncChange: 5, nextNode: "jiangyanbai_hidden_platform" },
-                        { text: "让信鸽先飞上去看看", syncChange: 3, nextNode: "jiangyanbai_hidden_platform" },
-                        { text: "用精神力感知上面", syncChange: 5, cost: { type: "精神力", value: 5 }, nextNode: "jiangyanbai_hidden_platform" }
+                        { text: "试着走上去", syncChange: 2, nextNode: "jiangyanbai_hidden_platform" },
+                        { text: "让信鸽先飞上去看看", syncChange: 1, nextNode: "jiangyanbai_hidden_platform" },
+                        { text: "用精神力感知上面", syncChange: 2, cost: { type: "精神力", value: 5 }, nextNode: "jiangyanbai_hidden_platform" }
                     ]
                 },
                 "jiangyanbai_hidden_platform": {
@@ -850,9 +874,9 @@
                     name: "隐藏区域 · 平台上的收藏盒",
                     text: "你爬上平台，走到铁箱子前。\n\n打开箱子——\n\n里面放着一些东西：\n\n· 几片灰白色的羽毛，是你的信鸽的\n· 一张便签，上面是你的笔迹，写着某次案件的分析\n· 一小截松枝，从你图景里飘来的\n· 一块石头，很普通，但上面刻着一个字：'白'",
                     options: [
-                        { text: "拿起羽毛", syncChange: 10, hiddenPerception: "他从第一天就在收集你的东西", nextNode: "jiangyanbai_area2_point5" },
-                        { text: "看那张便签", syncChange: 10, fragment: "那次案件", nextNode: "jiangyanbai_area2_point5" },
-                        { text: "拿起那块石头", syncChange: 15, hiddenPerception: "他一直想让你来", nextNode: "jiangyanbai_area2_point5" }
+                        { text: "拿起羽毛", syncChange: 4, hiddenPerception: "他从第一天就在收集你的东西", nextNode: "jiangyanbai_area2_point5" },
+                        { text: "看那张便签", syncChange: 4, fragment: "那次案件", nextNode: "jiangyanbai_area2_point5" },
+                        { text: "拿起那块石头", syncChange: 6, hiddenPerception: "他一直想让你来", nextNode: "jiangyanbai_area2_point5" }
                     ]
                 },
                 "jiangyanbai_area2_point5": {
@@ -860,9 +884,9 @@
                     name: "第三座厂房",
                     text: "第三座厂房最小，也最偏僻。\n\n门半开着。\n\n你推门进去——\n\n里面只有一个画面，在墙上静静地播放：\n\n程野受了伤，坐在医务室里。医生在给他包扎，他低着头，看不见表情。\n\n门开了。你走进来。\n\n画面里的程野抬起头，看见你的一瞬间，他的眼神变了——从忍着疼的倔强，变成了一种很轻的、几乎看不出来的放松。\n\n你走过去，在他身边坐下，什么都没说，只是陪着他。\n\n画面定格在这个瞬间。",
                     options: [
-                        { text: "看着那个瞬间", syncChange: 10, fragment: "你在的时候", nextNode: "jiangyanbai_area3_start" },
-                        { text: "伸手触碰画面里的他", syncChange: 12, hiddenPerception: "你来了，他就安心了", nextNode: "jiangyanbai_area3_start" },
-                        { text: "只是站着，不说话", syncChange: 8, nextNode: "jiangyanbai_area3_start" }
+                        { text: "看着那个瞬间", syncChange: 4, fragment: "你在的时候", nextNode: "jiangyanbai_area3_start" },
+                        { text: "伸手触碰画面里的他", syncChange: 5, hiddenPerception: "你来了，他就安心了", nextNode: "jiangyanbai_area3_start" },
+                        { text: "只是站着，不说话", syncChange: 3, nextNode: "jiangyanbai_area3_start" }
                     ]
                 },
                 "jiangyanbai_area3_start": {
@@ -876,9 +900,9 @@
                     name: "走近他",
                     text: "你走过去，在他面前蹲下。\n\n他闭着眼，眉头轻轻皱着。呼吸很平稳，但嘴唇抿得很紧——即使在睡梦中，他也在忍着什么。\n\n你伸出手，想帮他梳理一下那些乱成一团的感知——\n\n指尖刚触到他额头的瞬间，他动了动。\n\n“砚白哥......”他轻声呢喃。\n\n你的手顿住了。\n\n他没醒，只是下意识地叫了你的名字。",
                     options: [
-                        { text: "继续梳理", syncChange: 10, cost: { type: "精神力", value: 5 }, nextNode: "jiangyanbai_area3_point2" },
-                        { text: "收回手，只是看着他", syncChange: 5, nextNode: "jiangyanbai_area3_point2" },
-                        { text: "轻声回应：“我在。”", syncChange: 12, nextNode: "jiangyanbai_area3_point2" }
+                        { text: "继续梳理", syncChange: 4, cost: { type: "精神力", value: 5 }, nextNode: "jiangyanbai_area3_point2" },
+                        { text: "收回手，只是看着他", syncChange: 2, nextNode: "jiangyanbai_area3_point2" },
+                        { text: "轻声回应：“我在。”", syncChange: 5, nextNode: "jiangyanbai_area3_point2" }
                     ]
                 },
                 "jiangyanbai_area3_point2": {
@@ -886,8 +910,8 @@
                     name: "树下的痕迹",
                     text: "你环顾四周。巨树下有很多痕迹——狼王卧过的地方，磨过爪子的树根，还有......\n\n一些你不认识的东西。",
                     options: [
-                        { text: "树根上的刻痕", syncChange: 10, hiddenPerception: "他记住了每一个日子", nextNode: "jiangyanbai_area3_point3" },
-                        { text: "树下的一小堆石头", syncChange: 10, hiddenPerception: "他把你的名字刻在石头上", nextNode: "jiangyanbai_area3_point3" },
+                        { text: "树根上的刻痕", syncChange: 4, hiddenPerception: "他记住了每一个日子", nextNode: "jiangyanbai_area3_point3" },
+                        { text: "树下的一小堆石头", syncChange: 4, hiddenPerception: "他把你的名字刻在石头上", nextNode: "jiangyanbai_area3_point3" },
                         { text: "树洞里藏着的东西", syncChange: 0, nextNode: "jiangyanbai_hidden_letters" }
                     ]
                 },
@@ -895,16 +919,16 @@
                     id: "jiangyanbai_hidden_letters",
                     name: "隐藏区域 · 树洞里的信",
                     text: "树干上有一个洞，不大，但足够伸手进去。\n\n你犹豫了一下，然后伸手。\n\n摸到一个小盒子。\n\n拿出来，打开——\n\n盒子里是信。\n\n很多封，叠得整整齐齐。\n\n最上面一封的日期是今天。\n\n你打开，上面只有一行字：\n\n“砚白哥今天没来。他是不是累了？”\n\n你的心口一紧。\n\n你翻看下一封：\n\n“砚白哥帮我梳理的时候，手很轻。他知不知道我喜欢他？”\n\n再下一封：\n\n“今天差点说漏嘴了。还好他转头了。”\n\n再下一封：\n\n“我想让他来看我的树。但不知道怎么开口。”\n\n一封一封，全是这样的句子。\n\n从来没寄出去的信。从来没说过的话。\n\n你一封一封看下去：\n\n第一年：“今天第一次见他。他穿灰色毛衣。我想记住他。”\n\n第二年：“他记得我的名字。他叫我程野。就两个字，我高兴了一整天。”\n\n第三年：“他成了哥哥的搭档。我能经常看见他了。我是不是应该满足了？但我还想更多。”\n\n第四年：“今天他问我，程野，你是不是累了？他看出来了。他看出来了！”\n\n第五年：“我成为他哨兵了。以后能天天见到他。我要控制住自己，不能让他发现。”\n\n第六年：“控制不住了。我好想告诉他。但不行。说了他会躲吗？他会不会觉得我烦？”\n\n第七年：“今天又写了一封。第一百三十七封了。一封都没寄出去。”\n\n第八年：“他在我精神图景里的时候，我的树会高兴。他走了，树就蔫几天。树都知道我喜欢他，就他不知道。”\n\n第九年：“今天差点说了。真的只差一点点。但他转头了。他是不是故意的？他是不是知道，所以假装没听见？”\n\n第十年：“砚白哥今天没来。他是不是累了？”\n\n信到这里结束。\n\n你捧着那些信，很久很久。\n\n十年。他写了十年。\n\n从第一次见到你那天开始，一直写到现在。",
-                    options: [ { text: "放下信，看着他", syncChange: 30, item: "程野的信", nextNode: "jiangyanbai_area3_point3" } ]
+                    options: [ { text: "放下信，看着他", syncChange: 8, item: "程野的信", nextNode: "jiangyanbai_area3_point3" } ]
                 },
                 "jiangyanbai_area3_point3": {
                     id: "jiangyanbai_area3_point3",
                     name: "狼王和信鸽",
                     text: "狼王还卧在那里，看着你。\n\n信鸽从你肩头飞下来，落在狼王背上。\n\n两个精神体就这样待着，一个灰白色的狼，一只灰白色的鸽子。",
                     options: [
-                        { text: "轻声说：“你们倒是比我们自在。”", syncChange: 5, nextNode: "jiangyanbai_area3_point4" },
-                        { text: "走过去，在狼王身边坐下", syncChange: 8, nextNode: "jiangyanbai_area3_point4" },
-                        { text: "什么都不说，只是看着", syncChange: 5, nextNode: "jiangyanbai_area3_point4" }
+                        { text: "轻声说：“你们倒是比我们自在。”", syncChange: 2, nextNode: "jiangyanbai_area3_point4" },
+                        { text: "走过去，在狼王身边坐下", syncChange: 3, nextNode: "jiangyanbai_area3_point4" },
+                        { text: "什么都不说，只是看着", syncChange: 2, nextNode: "jiangyanbai_area3_point4" }
                     ]
                 },
                 "jiangyanbai_area3_point4": {
@@ -912,9 +936,9 @@
                     name: "树上的叶子",
                     text: "巨树上，有些叶子的颜色不太一样。\n\n你仔细看——那些叶子，不是这棵树的叶子。是针叶，是松叶，是从你图景里飘来的叶子，落在了他的树上。\n\n它们被小心地夹在枝桠间，没有掉落。",
                     options: [
-                        { text: "伸手触碰那些叶子", syncChange: 10, hiddenPerception: "他留着你的一切", nextNode: "jiangyanbai_area3_core" },
-                        { text: "问狼王：“他一直留着？”", syncChange: 8, nextNode: "jiangyanbai_area3_core" },
-                        { text: "轻声说：“原来你收着。”", syncChange: 12, hiddenPerception: "你们一样", nextNode: "jiangyanbai_area3_core" }
+                        { text: "伸手触碰那些叶子", syncChange: 4, hiddenPerception: "他留着你的一切", nextNode: "jiangyanbai_area3_core" },
+                        { text: "问狼王：“他一直留着？”", syncChange: 3, nextNode: "jiangyanbai_area3_core" },
+                        { text: "轻声说：“原来你收着。”", syncChange: 5, hiddenPerception: "你们一样", nextNode: "jiangyanbai_area3_core" }
                     ]
                 },
                 "jiangyanbai_area3_core": {
@@ -922,9 +946,9 @@
                     name: "核心场景 · 巨树下的对话",
                     text: "你在他身边坐下来，背靠着树干。\n\n狼王卧在你另一边，信鸽在你肩上。\n\n风从城市深处吹来，带着烟火气。\n\n过了很久，他动了动。\n\n然后他睁开眼，看着你。\n\n他的眼睛里有短暂的茫然，然后渐渐聚焦。\n\n“......江砚白？”\n\n“嗯。”\n\n“你怎么进来的？”",
                     options: [
-                        { text: "“你叫我进来的。”", syncChange: 10, nextNode: "jiangyanbai_area3_core_branch1" },
-                        { text: "“我不进来，谁进来？”", syncChange: 12, nextNode: "jiangyanbai_area3_core_branch2" },
-                        { text: "沉默片刻，然后说：“我担心你。”", syncChange: 15, nextNode: "jiangyanbai_area3_core_branch3" }
+                        { text: "“你叫我进来的。”", syncChange: 4, nextNode: "jiangyanbai_area3_core_branch1" },
+                        { text: "“我不进来，谁进来？”", syncChange: 5, nextNode: "jiangyanbai_area3_core_branch2" },
+                        { text: "沉默片刻，然后说：“我担心你。”", syncChange: 6, nextNode: "jiangyanbai_area3_core_branch3" }
                     ]
                 },
                 "jiangyanbai_area3_core_branch1": {
@@ -950,9 +974,9 @@
                     name: "核心对话 · 那些信",
                     text: "他坐起来，靠在你旁边，没说话。\n\n你们就这样坐着。\n\n过了很久，他开口：\n\n“你看到那些信了吗？”",
                     options: [
-                        { text: "“看到了。”", syncChange: 8, nextNode: "jiangyanbai_area3_core_after1" },
-                        { text: "沉默，然后点头", syncChange: 12, nextNode: "jiangyanbai_area3_core_after2" },
-                        { text: "反问：“你想让我看到吗？”", syncChange: 15, nextNode: "jiangyanbai_area3_core_after3" }
+                        { text: "“看到了。”", syncChange: 3, nextNode: "jiangyanbai_area3_core_after1" },
+                        { text: "沉默，然后点头", syncChange: 4, nextNode: "jiangyanbai_area3_core_after2" },
+                        { text: "反问：“你想让我看到吗？”", syncChange: 5, nextNode: "jiangyanbai_area3_core_after3" }
                     ]
                 },
                 "jiangyanbai_area3_core_after1": {
@@ -978,9 +1002,9 @@
                     name: "核心对话 · 最后的话",
                     text: "他的喉结动了动。\n\n“......我写了很多年。”\n\n你看着他。\n\n他没看你，看着巨树的树冠：\n\n“从警校那年开始。你第一次来给我们讲课。你穿着那件灰色毛衣，站在讲台上，讲行为分析。我坐在最后一排，看了你整整两个小时。”\n\n你的心跳漏了一拍。\n\n他继续说：\n\n“后来你成了哥哥的搭档。我每次去找哥哥，都能看见你。你有时候在看书，有时候在写东西，有时候就坐在那里发呆。我每次都想过去说话，但每次都没敢。”\n\n“再后来，我成了你的哨兵。”\n\n他转过头，看着你。\n\n“我以为能天天见到你，就能少写一点信。结果写得更多了。”",
                     options: [
-                        { text: "“为什么不告诉我？”", syncChange: 5, nextNode: "jiangyanbai_area3_core_choice1" },
-                        { text: "沉默，只是看着他", syncChange: 8, nextNode: "jiangyanbai_area3_core_choice2" },
-                        { text: "伸手，轻轻碰了碰他的脸", syncChange: 30, nextNode: "jiangyanbai_area3_core_choice3" }
+                        { text: "“为什么不告诉我？”", syncChange: 2, nextNode: "jiangyanbai_area3_core_choice1" },
+                        { text: "沉默，只是看着他", syncChange: 3, nextNode: "jiangyanbai_area3_core_choice2" },
+                        { text: "伸手，轻轻碰了碰他的脸", syncChange: 8, nextNode: "jiangyanbai_area3_core_choice3" }
                     ]
                 },
                 "jiangyanbai_area3_core_choice1": {
@@ -1012,9 +1036,9 @@
                     name: "离开前的瞬间",
                     text: "你站起来，准备退出精神图景。\n\n“江砚白。”\n\n你回头。\n\n他还坐在树下，看着你。\n\n“下次......”他说，“你什么时候再来？”",
                     options: [
-                        { text: "“你想让我来的时候。”", syncChange: 10, nextNode: "jiangyanbai_ending_trigger" },
-                        { text: "“等你叫我的时候。”", syncChange: 12, nextNode: "jiangyanbai_ending_trigger" },
-                        { text: "“随时。”", syncChange: 15, nextNode: "jiangyanbai_ending_trigger" }
+                        { text: "“你想让我来的时候。”", syncChange: 4, nextNode: "jiangyanbai_ending_trigger" },
+                        { text: "“等你叫我的时候。”", syncChange: 5, nextNode: "jiangyanbai_ending_trigger" },
+                        { text: "“随时。”", syncChange: 6, nextNode: "jiangyanbai_ending_trigger" }
                     ]
                 },
                 "jiangyanbai_ending_trigger": {
@@ -1027,36 +1051,37 @@
             }
         };
 
+        // ---------- 结局数据 ENDINGS ----------
         const ENDINGS = {
             chengye: {
                 "ending_chengye_01": {
                     id: "ending_chengye_01",
                     name: "沉默的海",
-                    condition: "同步率 < 40",
+                    condition: "同步率 < 60",
                     desc: "你成功把他带出来了。\n\n但他醒来后，很沉默。你们坐在他公寓里，谁也没说话。\n\n最后他开口：“谢谢。”\n\n你点头：“嗯。”\n\n你起身离开。走到门口时，你回头看他——他已经背过身去，看着窗外。\n\n那一声“阿野”，像是从来没有发生过。\n\n后来你问自己：那天在山顶，他真的叫了吗？还是你听错了？\n\n你不知道答案。\n\n但你知道，从那以后，你的海面上，再也没有倒映出他的城市。"
                 },
                 "ending_chengye_02": {
                     id: "ending_chengye_02",
                     name: "不说的约定",
-                    condition: "40 ≤ 同步率 < 60",
+                    condition: "60 ≤ 同步率 < 70",
                     desc: "他醒来后，靠在你肩上喘了很久。\n\n然后他坐起来，看着你，说：“以后别进来了。”\n\n你皱眉：“为什么？”\n\n他没回答。\n\n但你知道答案：他不想让你看见那些黑暗。不想让你知道他藏起来的地方。不想让你看见那些信鸽的血、那些崩塌的悬崖。\n\n你站起来，说：“下次你困住自己，我还是会进来。”\n\n他抬头看你，眼睛里有东西闪了一下。\n\n然后他低下头，什么都没说。\n\n但你看见他的嘴角，轻轻弯了一下。"
                 },
                 "ending_chengye_03": {
                     id: "ending_chengye_03",
                     name: "风的方向",
-                    condition: "60 ≤ 同步率 < 80",
+                    condition: "70 ≤ 同步率 < 80",
                     desc: "他醒来后，看了你很久。\n\n然后他伸手，拂去你肩上的一根羽毛——是信鸽留下的。\n\n“阿野，”他说，“谢谢你进来。”\n\n那是他第一次清醒时叫你阿野。\n\n你的心跳很快，但你只是点头：“嗯。”\n\n他没再说什么。你也没再问。\n\n但那天之后，你发现自己的精神图景里，偶尔会飘来一阵海风。\n\n不是每次都有。但每次飘来的时候，你都会停下手里的事，闭上眼，感受那阵风。\n\n你知道那是他在想你。"
                 },
                 "ending_chengye_04": {
                     id: "ending_chengye_04",
                     name: "触碰",
-                    condition: "80 ≤ 同步率 < 95",
+                    condition: "80 ≤ 同步率 < 90",
                     desc: "他醒来后，没有立刻说话。\n\n他只是看着你，看了很久很久。\n\n然后他伸手，轻轻碰了碰你的脸。\n\n“砚白哥......”\n\n“嗯。”\n\n“你碰我了。”\n\n他愣了一下，然后轻轻弯了弯嘴角。\n\n“嗯。”他说，“我碰了。”\n\n你们都没再说话。\n\n但那天之后，他碰你的次数变多了。\n\n有时候是拂去肩上的灰，有时候是递东西时手指的轻触，有时候是精神梳理时多停留的那一秒。\n\n每一次，你都记住了。"
                 },
                 "ending_chengye_05": {
                     id: "ending_chengye_05",
                     name: "随时可以来的海",
-                    condition: "同步率 ≥ 95",
+                    condition: "同步率 ≥ 90",
                     desc: "他醒来后，你们坐在他公寓里，谁也没说话。\n\n天快亮了。\n\n你站起来，准备离开。\n\n“程野。”他叫住你。\n\n你回头。\n\n他站在窗边，晨光照在他身上。\n\n“下次，”他说，“你想看海的时候，直接进来。”\n\n你站在原地，心跳声震耳欲聋。\n\n“......好。”\n\n你推开门，走进清晨的风里。\n\n身后，他的声音很轻地传来：\n\n“阿野，路上小心。”\n\n那天之后，你的海，随时为他开着。"
                 }
             },
@@ -1064,31 +1089,31 @@
                 "ending_jiang_01": {
                     id: "ending_jiang_01",
                     name: "沉默的城市",
-                    condition: "同步率 < 40",
+                    condition: "同步率 < 60",
                     desc: "你找到了他，带他出来了。\n\n但他醒来后，很沉默。你们坐在他办公室里，谁也没说话。\n\n最后他开口：“谢谢。”\n\n你点头：“嗯。”\n\n你起身离开。走到门口时，你回头看他——他已经背过身去，看着窗外。\n\n那些信的事，谁也没再提。\n\n但你后来发现，你的精神图景里，钢铁森林的倒影变淡了。\n\n越来越淡。\n\n最后只剩下那棵巨树，孤零零地立在海面上。"
                 },
                 "ending_jiang_02": {
                     id: "ending_jiang_02",
                     name: "不再写的信",
-                    condition: "40 ≤ 同步率 < 60",
+                    condition: "60 ≤ 同步率 < 70",
                     desc: "他醒来后，看着你。\n\n“你看到了？”他问。\n\n你知道他问的是信。\n\n你点头。\n\n他低下头：“......别看。”\n\n你在他身边坐下：“已经看了。”\n\n他没说话。\n\n你也没说话。\n\n但那天之后，你再也没见他写过信。\n\n他不再写了。但他看你的眼神，和以前不一样了。\n\n有时候你看过去，会发现他在看你。你一看他，他就移开视线。\n\n你从来没问。\n\n但你知道，那些信虽然不写了，话却一直都在。"
                 },
                 "ending_jiang_03": {
                     id: "ending_jiang_03",
                     name: "等你叫我的时候",
-                    condition: "60 ≤ 同步率 < 80",
+                    condition: "70 ≤ 同步率 < 80",
                     desc: "他醒来后，你们在巨树下坐了很久。\n\n最后他问：“你什么时候再来？”\n\n你看着他，说：“等你叫我的时候。”\n\n他点头：“那我叫的时候，你一定要来。”\n\n你说：“好。”\n\n那天之后，你偶尔会听见精神链接里传来很轻的声音——\n\n“江砚白。”\n\n不是有事。只是叫你的名字。\n\n每次听见，你都会弯一下嘴角。\n\n然后在下一次进入他的图景时，在他耳边轻轻说：\n\n“听见了。”"
                 },
                 "ending_jiang_04": {
                     id: "ending_jiang_04",
                     name: "直接说",
-                    condition: "80 ≤ 同步率 < 95",
+                    condition: "80 ≤ 同步率 < 90",
                     desc: "他醒来后，靠在树上，看着你。\n\n“那些信......”他说，“本来打算一辈子都不让你看见。”\n\n你在他身边坐下：“现在看见了。”\n\n他垂下眼：“那你......”\n\n你没让他说完。\n\n你伸手，轻轻抵住他的额头。\n\n精神链接里，你传过去一句话：\n\n“以后不用写，直接说。”\n\n他愣住了。\n\n然后他轻轻“嗯”了一声。\n\n那天之后，他真的开始“直接说”了。\n\n有时候是“砚白哥，我今天有点累”，有时候是“砚白哥，你在吗”，有时候是“砚白哥，我想你了”。\n\n每一次，你都会回他：“在。”"
                 },
                 "ending_jiang_05": {
                     id: "ending_jiang_05",
                     name: "随时可以来的地方",
-                    condition: "同步率 ≥ 95",
+                    condition: "同步率 ≥ 90",
                     desc: "他醒来后，你们在巨树下坐了很久。\n\n天快亮了——精神图景里的天亮。\n\n你站起来，准备离开。\n\n“江砚白。”\n\n你回头。\n\n他还坐在树下，看着你。\n\n“下次，”他说，“你想来的时候，直接来。”\n\n你站在原地，看着他。\n\n他继续说：“不用等我叫你。你什么时候想来，就来。”\n\n你的心跳很快。\n\n“......好。”\n\n你转身，离开。\n\n身后，他的声音很轻地传来：\n\n“砚白哥，路上小心。”\n\n那天之后，钢铁森林对你永远敞开。\n\n你随时可以来。\n\n他随时都在。"
                 }
             },
@@ -1107,7 +1132,7 @@
             state: {
                 currentView: null,
                 currentNode: null,
-                sync: 50,
+                sync: 10,
                 explore: 0,
                 visitedNodes: [],
                 collectedFragments: [],
@@ -1117,6 +1142,7 @@
                 bgmEnabled: false,
                 lastSaveTime: null
             },
+
             init: function() {
                 const savedEndings = localStorage.getItem('unlocked_endings');
                 if (savedEndings) {
@@ -1124,52 +1150,73 @@
                 }
                 UI.updateProgress();
                 UI.updateViewStatus();
+                console.log('游戏初始化完成');
             },
+
             startView: function(view) {
                 this.state.currentView = view;
                 this.state.currentNode = view === 'chengye' ? 'chengye_area1_start' : 'jiangyanbai_area1_start';
-                this.state.sync = 50;
+                this.state.sync = 10;
                 this.state.explore = 0;
                 this.state.visitedNodes = [];
+                
                 document.getElementById('start-page').style.display = 'none';
                 document.getElementById('game-page').style.display = 'block';
+                
                 UI.renderScene(this.state.currentNode);
                 UI.showTip(`已进入${view === 'chengye' ? '程野·临海之森' : '江砚白·钢铁森林'}`);
             },
+
             selectOption: function(nodeId, optionIndex) {
                 const scene = GAME_DATA[this.state.currentView][nodeId];
                 if (!scene || !scene.options || !scene.options[optionIndex]) return;
+                
                 const option = scene.options[optionIndex];
                 const currentSync = this.state.sync;
+                
                 if (option.syncChange) {
+                    const oldSync = this.state.sync;
                     this.state.sync = Math.min(100, Math.max(0, this.state.sync + option.syncChange));
+                    if (this.state.sync > oldSync) {
+                        UI.showTip("同步率上升");
+                    } else if (this.state.sync < oldSync) {
+                        UI.showTip("同步率下降");
+                    }
                 }
+                
                 if (option.exploreChange) {
                     this.state.explore = Math.min(100, this.state.explore + option.exploreChange);
                 }
+                
                 if (option.fragment) {
                     if (!this.state.collectedFragments.includes(option.fragment)) {
                         this.state.collectedFragments.push(option.fragment);
                         UI.showTip(`获得记忆碎片：${option.fragment}`);
                     }
                 }
+                
                 if (option.item) {
                     if (!this.state.collectedItems.includes(option.item)) {
                         this.state.collectedItems.push(option.item);
                         UI.showTip(`获得特殊物品：${option.item}`);
                     }
                 }
+                
                 this.recordVisitedNode(nodeId, currentSync);
+                
                 if (option.nextNode && option.nextNode.includes('ending')) {
                     this.triggerEnding(option.nextNode);
                     return;
                 }
+                
                 if (option.nextNode) {
                     this.state.currentNode = option.nextNode;
                     UI.renderScene(this.state.currentNode);
                 }
+                
                 UI.updateProgress();
             },
+
             recordVisitedNode: function(nodeId, syncAtNode) {
                 const scene = GAME_DATA[this.state.currentView][nodeId];
                 if (!scene) return;
@@ -1183,6 +1230,7 @@
                     });
                 }
             },
+
             backToNode: function(nodeId) {
                 const record = this.state.visitedNodes.find(n => n.nodeId === nodeId);
                 if (!record) return;
@@ -1192,25 +1240,30 @@
                 UI.showTip(`已回溯到：${record.nodeName}`);
                 UI.updateProgress();
             },
+
             replayNode: function() {
                 UI.renderScene(this.state.currentNode);
                 UI.showTip('重播当前节点');
             },
+
             triggerEnding: function(endingId) {
                 let finalEndingId = endingId;
+                
                 if (endingId === 'chengye_ending_trigger') {
-                    if (this.state.sync < 40) finalEndingId = 'ending_chengye_01';
-                    else if (this.state.sync < 60) finalEndingId = 'ending_chengye_02';
+                    if (this.state.sync < 60) finalEndingId = 'ending_chengye_01';
+                    else if (this.state.sync < 70) finalEndingId = 'ending_chengye_02';
                     else if (this.state.sync < 80) finalEndingId = 'ending_chengye_03';
-                    else if (this.state.sync < 95) finalEndingId = 'ending_chengye_04';
+                    else if (this.state.sync < 90) finalEndingId = 'ending_chengye_04';
                     else finalEndingId = 'ending_chengye_05';
-                } else if (endingId === 'jiangyanbai_ending_trigger') {
-                    if (this.state.sync < 40) finalEndingId = 'ending_jiang_01';
-                    else if (this.state.sync < 60) finalEndingId = 'ending_jiang_02';
+                }
+                else if (endingId === 'jiangyanbai_ending_trigger') {
+                    if (this.state.sync < 60) finalEndingId = 'ending_jiang_01';
+                    else if (this.state.sync < 70) finalEndingId = 'ending_jiang_02';
                     else if (this.state.sync < 80) finalEndingId = 'ending_jiang_03';
-                    else if (this.state.sync < 95) finalEndingId = 'ending_jiang_04';
+                    else if (this.state.sync < 90) finalEndingId = 'ending_jiang_04';
                     else finalEndingId = 'ending_jiang_05';
                 }
+                
                 if (!this.state.unlockedEndings.includes(finalEndingId)) {
                     this.state.unlockedEndings.push(finalEndingId);
                     localStorage.setItem('unlocked_endings', JSON.stringify(this.state.unlockedEndings));
@@ -1221,13 +1274,16 @@
                     }
                     this.checkHiddenEnding();
                 }
+                
                 UI.showEnding(finalEndingId);
             },
+
             checkHiddenEnding: function() {
                 const chengyeExplored = localStorage.getItem('chengye_explored') === 'true';
                 const jiangyanbaiExplored = localStorage.getItem('jiangyanbai_explored') === 'true';
-                const allFragments = this.state.collectedFragments.length >= 15;
-                const allItems = this.state.collectedItems.length >= 6;
+                const allFragments = this.state.collectedFragments.length >= 10;
+                const allItems = this.state.collectedItems.length >= 5;
+                
                 if (chengyeExplored && jiangyanbaiExplored && allFragments && allItems) {
                     if (!this.state.unlockedEndings.includes('ending_hidden')) {
                         this.state.unlockedEndings.push('ending_hidden');
@@ -1236,15 +1292,17 @@
                     }
                 }
             },
+
             replayEndingLine: function() {
                 this.state.currentNode = this.state.currentView === 'chengye' ? 'chengye_area1_start' : 'jiangyanbai_area1_start';
-                this.state.sync = 50;
+                this.state.sync = 10;
                 this.state.explore = 0;
                 UI.hideEnding();
                 UI.renderScene(this.state.currentNode);
                 UI.updateProgress();
                 UI.showTip('重新开始当前视角');
             },
+
             backToStart: function() {
                 UI.hideEnding();
                 UI.updateViewStatus();
@@ -1252,6 +1310,7 @@
                 document.getElementById('start-page').style.display = 'flex';
                 UI.showTip('返回视角选择页面');
             },
+
             getState: function() {
                 return {
                     currentView: this.state.currentView,
@@ -1264,6 +1323,7 @@
                     unlockedEndings: this.state.unlockedEndings
                 };
             },
+
             setState: function(state) {
                 this.state = { ...this.state, ...state };
                 if (this.state.currentNode) {
@@ -1284,6 +1344,7 @@
                 this.updateAllButtons();
                 UI.showTip(`已存档到槽位 ${slot + 1}`);
             },
+
             loadGame: function(slot) {
                 if (slot < 0 || slot > 4) return;
                 const saveData = localStorage.getItem(`game_save_${slot}`);
@@ -1303,6 +1364,7 @@
                     UI.showTip('读档失败，存档可能已损坏');
                 }
             },
+
             updateAllButtons: function() {
                 for (let i = 0; i < 5; i++) {
                     const saveBtn = document.getElementById(`save-btn-${i}`);
@@ -1324,12 +1386,14 @@
                     }
                 }
             },
+
             deleteSave: function(slot) {
                 if (slot < 0 || slot > 4) return;
                 localStorage.removeItem(`game_save_${slot}`);
                 this.updateAllButtons();
                 UI.showTip(`已删除槽位 ${slot + 1} 的存档`);
             },
+
             getAllSaves: function() {
                 const saves = [];
                 for (let i = 0; i < 5; i++) {
@@ -1350,6 +1414,7 @@
                 }
                 return saves;
             },
+
             init: function() {
                 this.updateAllButtons();
             }
@@ -1358,6 +1423,7 @@
         // ---------- ui.js ----------
         const UI = {
             typeTimer: null,
+
             showTip: function(text) {
                 const tip = document.getElementById("game-tip");
                 tip.textContent = `> ${text}`;
@@ -1366,27 +1432,34 @@
                     tip.style.display = "none";
                 }, 2500);
             },
+
             updateProgress: function() {
                 const state = Game.state;
                 document.getElementById("sync-value").innerText = `${state.sync}%`;
                 document.getElementById("sync-progress").style.width = `${state.sync}%`;
                 document.getElementById("explore-value").innerText = `${state.explore}%`;
                 document.getElementById("explore-progress").style.width = `${state.explore}%`;
+                
                 const fragCount = state.collectedFragments.length;
-                document.getElementById("frag-text").innerText = `${fragCount} / 15`;
-                document.getElementById("frag-progress").style.width = `${(fragCount/15)*100}%`;
+                document.getElementById("frag-text").innerText = `${fragCount} / 10`;
+                document.getElementById("frag-progress").style.width = `${(fragCount/10)*100}%`;
+                
                 const itemCount = state.collectedItems.length;
-                document.getElementById("item-text").innerText = `${itemCount} / 6`;
-                document.getElementById("item-progress").style.width = `${(itemCount/6)*100}%`;
+                document.getElementById("item-text").innerText = `${itemCount} / 5`;
+                document.getElementById("item-progress").style.width = `${(itemCount/5)*100}%`;
+                
                 const endCount = state.unlockedEndings.length;
                 document.getElementById("end-text").innerText = `${endCount} / 10`;
                 document.getElementById("end-progress").style.width = `${(endCount/10)*100}%`;
             },
+
             updateViewStatus: function() {
-                const chengyeExplored = localStorage.getItem("chengye_explored") === "true";
-                const jiangyanbaiExplored = localStorage.getItem("jiangyanbai_explored") === "true";
+                const chengyeExplored = localStorage.getItem('chengye_explored') === 'true';
+                const jiangyanbaiExplored = localStorage.getItem('jiangyanbai_explored') === 'true';
+                
                 const chengyeEl = document.getElementById("chengye-status");
                 const jiangEl = document.getElementById("jiangyanbai-status");
+                
                 if (chengyeExplored) {
                     chengyeEl.innerText = "已探索";
                     chengyeEl.classList.add("completed");
@@ -1396,6 +1469,7 @@
                     jiangEl.classList.add("completed");
                 }
             },
+
             typeText: function(element, text, speed = 30, callback) {
                 if (this.typeTimer) {
                     clearInterval(this.typeTimer);
@@ -1417,17 +1491,22 @@
                     }
                 }, speed);
             },
+
             renderScene: function(nodeId) {
                 if (!Game.state.currentView) return;
+                
                 const scene = GAME_DATA[Game.state.currentView][nodeId];
                 if (!scene) {
                     console.error('场景不存在', nodeId);
                     return;
                 }
+
                 const narrateEl = document.getElementById("narrate-text");
                 this.typeText(narrateEl, scene.text, 30);
+
                 const optionsArea = document.getElementById("options-area");
                 optionsArea.innerHTML = "";
+
                 if (scene.options && scene.options.length > 0) {
                     scene.options.forEach((option, index) => {
                         const optionEl = document.createElement("div");
@@ -1435,18 +1514,17 @@
                         optionEl.onclick = function() {
                             Game.selectOption(nodeId, index);
                         };
+
                         let optionContent = `
                             <span class="option-number">${String.fromCharCode(65 + index)}</span>
                             <span class="option-text">${option.text}</span>
                         `;
-                        if (option.syncChange) {
-                            const syncText = option.syncChange >= 0 ? `+${option.syncChange}` : option.syncChange;
-                            optionContent += `<span class="option-sync">同步率 ${syncText}</span>`;
-                        }
+
                         if (option.cost) {
-                            const costText = option.cost.type === "精神力" ? `精神-${option.cost.value}` : "体力消耗";
+                            const costText = option.cost.type === "精神力" ? "精神消耗" : "体力消耗";
                             optionContent += `<span class="option-sync mental-cost">${costText}</span>`;
                         }
+
                         optionContent += `<span class="option-arrow">></span>`;
                         optionEl.innerHTML = optionContent;
                         optionsArea.appendChild(optionEl);
@@ -1460,12 +1538,15 @@
                         </div>
                     `;
                 }
+
                 const titleEl = document.querySelector(".options-title");
                 if (titleEl && scene.name) {
                     titleEl.innerHTML = `> ${scene.name}`;
                 }
+
                 this.updateProgress();
             },
+
             replayNode: function() {
                 if (!Game.state.currentNode) return;
                 const scene = GAME_DATA[Game.state.currentView][Game.state.currentNode];
@@ -1474,9 +1555,11 @@
                 this.typeText(narrateEl, scene.text, 30);
                 this.showTip("重播当前节点");
             },
+
             showTimeLine: function() {
                 const timelineContent = document.getElementById("time-line-content");
                 timelineContent.innerHTML = "";
+
                 if (Game.state.visitedNodes.length === 0) {
                     timelineContent.innerHTML = '<div style="color:#888; text-align:center; padding:20px;">暂无访问记录</div>';
                 } else {
@@ -1507,9 +1590,11 @@
                 }
                 document.getElementById("time-line-page").style.display = "flex";
             },
+
             hideTimeLine: function() {
                 document.getElementById("time-line-page").style.display = "none";
             },
+
             showEnding: function(endId) {
                 let endingData;
                 if (ENDINGS.chengye && ENDINGS.chengye[endId]) {
@@ -1531,12 +1616,14 @@
                 this.showTip(`解锁结局：${endingData.name}`);
                 this.updateProgress();
             },
+
             hideEnding: function() {
                 if (this.typeTimer) {
                     clearInterval(this.typeTimer);
                 }
                 document.getElementById("ending-page").style.display = "none";
             },
+
             toggleFastForward: function() {
                 Game.state.isFastForward = !Game.state.isFastForward;
                 const btn = document.getElementById("fast-forward-btn");
@@ -1555,6 +1642,7 @@
                 }
                 this.showTip(Game.state.isFastForward ? "快进模式开启" : "快进模式关闭");
             },
+
             toggleBgm: function() {
                 Game.state.bgmEnabled = !Game.state.bgmEnabled;
                 const btn = document.getElementById("music-btn");
@@ -1577,6 +1665,7 @@
                 }
                 this.showTip(Game.state.bgmEnabled ? "音乐开启" : "音乐关闭");
             },
+
             init: function() {
                 this.updateViewStatus();
                 this.updateProgress();
