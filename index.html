@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>精神图景 · 锚点</title>
     <style>
-        /* ========== 样式部分 ========== */
         * {
             margin: 0;
             padding: 0;
@@ -350,6 +349,16 @@
             color: #00d9c0;
             font-size: 14px;
         }
+
+        .danger-btn {
+            background: #3a1e1e;
+            border-color: #b34a4a;
+            color: #ffb3b3;
+        }
+        .danger-btn:hover, .danger-btn:active {
+            background: #4f2a2a;
+            border-color: #ff6b6b;
+        }
     </style>
 </head>
 <body>
@@ -468,10 +477,16 @@
                             <button class="save-btn" id="load-btn-4" onclick="Save.loadGame(4)">读档5</button>
                         </div>
 
-                        <button class="func-btn" onclick="Game.backToStart()" style="width: 100%; margin-top: 10px;">
-                            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-                            返回首页
-                        </button>
+                        <div style="display: flex; gap: 8px; margin-top: 10px;">
+                            <button class="func-btn" onclick="Game.backToStart()" style="flex: 1;">
+                                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                                返回首页
+                            </button>
+                            <button class="func-btn danger-btn" onclick="UI.clearAllData()" style="flex: 1;">
+                                <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+                                清除数据
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -508,9 +523,7 @@
     </div>
 
     <script>
-        // ========== 所有JavaScript代码内嵌 ==========
-
-        // ---------- 剧情数据 data.js ----------
+        // ========== 剧情数据（完整版） ==========
         const GAME_DATA = {
             chengye: {
                 "chengye_area1_start": {
@@ -1051,7 +1064,6 @@
             }
         };
 
-        // ---------- 结局数据 ENDINGS ----------
         const ENDINGS = {
             chengye: {
                 "ending_chengye_01": {
@@ -1127,7 +1139,7 @@
             }
         };
 
-        // ---------- game.js ----------
+        // ========== 游戏核心逻辑（带自动保存和清除数据） ==========
         const Game = {
             state: {
                 currentView: null,
@@ -1143,10 +1155,54 @@
                 lastSaveTime: null
             },
 
+            persistState: function() {
+                try {
+                    const persistentState = {
+                        currentView: this.state.currentView,
+                        currentNode: this.state.currentNode,
+                        sync: this.state.sync,
+                        explore: this.state.explore,
+                        visitedNodes: this.state.visitedNodes,
+                        collectedFragments: this.state.collectedFragments,
+                        collectedItems: this.state.collectedItems,
+                        unlockedEndings: this.state.unlockedEndings,
+                        lastSaveTime: new Date().toLocaleString()
+                    };
+                    localStorage.setItem('game_auto_save', JSON.stringify(persistentState));
+                } catch (e) {
+                    console.warn('自动保存失败', e);
+                }
+            },
+
+            loadPersistedState: function() {
+                try {
+                    const saved = localStorage.getItem('game_auto_save');
+                    if (saved) {
+                        const parsed = JSON.parse(saved);
+                        this.state.currentView = parsed.currentView || null;
+                        this.state.currentNode = parsed.currentNode || null;
+                        this.state.sync = parsed.sync || 10;
+                        this.state.explore = parsed.explore || 0;
+                        this.state.visitedNodes = parsed.visitedNodes || [];
+                        this.state.collectedFragments = parsed.collectedFragments || [];
+                        this.state.collectedItems = parsed.collectedItems || [];
+                        this.state.unlockedEndings = parsed.unlockedEndings || [];
+                    }
+                } catch (e) {
+                    console.warn('加载自动存档失败', e);
+                }
+            },
+
             init: function() {
+                this.loadPersistedState();
                 const savedEndings = localStorage.getItem('unlocked_endings');
                 if (savedEndings) {
-                    this.state.unlockedEndings = JSON.parse(savedEndings);
+                    try {
+                        const endings = JSON.parse(savedEndings);
+                        if (this.state.unlockedEndings.length === 0) {
+                            this.state.unlockedEndings = endings;
+                        }
+                    } catch (e) {}
                 }
                 UI.updateProgress();
                 UI.updateViewStatus();
@@ -1159,10 +1215,9 @@
                 this.state.sync = 10;
                 this.state.explore = 0;
                 this.state.visitedNodes = [];
-                
+                this.persistState();
                 document.getElementById('start-page').style.display = 'none';
                 document.getElementById('game-page').style.display = 'block';
-                
                 UI.renderScene(this.state.currentNode);
                 UI.showTip(`已进入${view === 'chengye' ? '程野·临海之森' : '江砚白·钢铁森林'}`);
             },
@@ -1170,10 +1225,9 @@
             selectOption: function(nodeId, optionIndex) {
                 const scene = GAME_DATA[this.state.currentView][nodeId];
                 if (!scene || !scene.options || !scene.options[optionIndex]) return;
-                
                 const option = scene.options[optionIndex];
                 const currentSync = this.state.sync;
-                
+
                 if (option.syncChange) {
                     const oldSync = this.state.sync;
                     this.state.sync = Math.min(100, Math.max(0, this.state.sync + option.syncChange));
@@ -1183,38 +1237,35 @@
                         UI.showTip("同步率下降");
                     }
                 }
-                
+
                 if (option.exploreChange) {
                     this.state.explore = Math.min(100, this.state.explore + option.exploreChange);
                 }
-                
-                if (option.fragment) {
-                    if (!this.state.collectedFragments.includes(option.fragment)) {
-                        this.state.collectedFragments.push(option.fragment);
-                        UI.showTip(`获得记忆碎片：${option.fragment}`);
-                    }
+
+                if (option.fragment && !this.state.collectedFragments.includes(option.fragment)) {
+                    this.state.collectedFragments.push(option.fragment);
+                    UI.showTip(`获得记忆碎片：${option.fragment}`);
                 }
-                
-                if (option.item) {
-                    if (!this.state.collectedItems.includes(option.item)) {
-                        this.state.collectedItems.push(option.item);
-                        UI.showTip(`获得特殊物品：${option.item}`);
-                    }
+
+                if (option.item && !this.state.collectedItems.includes(option.item)) {
+                    this.state.collectedItems.push(option.item);
+                    UI.showTip(`获得特殊物品：${option.item}`);
                 }
-                
+
                 this.recordVisitedNode(nodeId, currentSync);
-                
+
                 if (option.nextNode && option.nextNode.includes('ending')) {
                     this.triggerEnding(option.nextNode);
                     return;
                 }
-                
+
                 if (option.nextNode) {
                     this.state.currentNode = option.nextNode;
                     UI.renderScene(this.state.currentNode);
                 }
-                
+
                 UI.updateProgress();
+                this.persistState();
             },
 
             recordVisitedNode: function(nodeId, syncAtNode) {
@@ -1228,6 +1279,7 @@
                         sync: syncAtNode !== undefined ? syncAtNode : this.state.sync,
                         time: new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
                     });
+                    this.persistState();
                 }
             },
 
@@ -1239,6 +1291,7 @@
                 UI.renderScene(nodeId);
                 UI.showTip(`已回溯到：${record.nodeName}`);
                 UI.updateProgress();
+                this.persistState();
             },
 
             replayNode: function() {
@@ -1248,22 +1301,21 @@
 
             triggerEnding: function(endingId) {
                 let finalEndingId = endingId;
-                
+
                 if (endingId === 'chengye_ending_trigger') {
                     if (this.state.sync < 60) finalEndingId = 'ending_chengye_01';
                     else if (this.state.sync < 70) finalEndingId = 'ending_chengye_02';
                     else if (this.state.sync < 80) finalEndingId = 'ending_chengye_03';
                     else if (this.state.sync < 90) finalEndingId = 'ending_chengye_04';
                     else finalEndingId = 'ending_chengye_05';
-                }
-                else if (endingId === 'jiangyanbai_ending_trigger') {
+                } else if (endingId === 'jiangyanbai_ending_trigger') {
                     if (this.state.sync < 60) finalEndingId = 'ending_jiang_01';
                     else if (this.state.sync < 70) finalEndingId = 'ending_jiang_02';
                     else if (this.state.sync < 80) finalEndingId = 'ending_jiang_03';
                     else if (this.state.sync < 90) finalEndingId = 'ending_jiang_04';
                     else finalEndingId = 'ending_jiang_05';
                 }
-                
+
                 if (!this.state.unlockedEndings.includes(finalEndingId)) {
                     this.state.unlockedEndings.push(finalEndingId);
                     localStorage.setItem('unlocked_endings', JSON.stringify(this.state.unlockedEndings));
@@ -1273,8 +1325,9 @@
                         localStorage.setItem('jiangyanbai_explored', 'true');
                     }
                     this.checkHiddenEnding();
+                    this.persistState();
                 }
-                
+
                 UI.showEnding(finalEndingId);
             },
 
@@ -1283,12 +1336,13 @@
                 const jiangyanbaiExplored = localStorage.getItem('jiangyanbai_explored') === 'true';
                 const allFragments = this.state.collectedFragments.length >= 10;
                 const allItems = this.state.collectedItems.length >= 5;
-                
+
                 if (chengyeExplored && jiangyanbaiExplored && allFragments && allItems) {
                     if (!this.state.unlockedEndings.includes('ending_hidden')) {
                         this.state.unlockedEndings.push('ending_hidden');
                         localStorage.setItem('unlocked_endings', JSON.stringify(this.state.unlockedEndings));
                         UI.showTip('✨ 解锁隐藏结局：风知道，海知道，树也知道');
+                        this.persistState();
                     }
                 }
             },
@@ -1300,6 +1354,7 @@
                 UI.hideEnding();
                 UI.renderScene(this.state.currentNode);
                 UI.updateProgress();
+                this.persistState();
                 UI.showTip('重新开始当前视角');
             },
 
@@ -1309,6 +1364,7 @@
                 document.getElementById('game-page').style.display = 'none';
                 document.getElementById('start-page').style.display = 'flex';
                 UI.showTip('返回视角选择页面');
+                this.persistState();
             },
 
             getState: function() {
@@ -1330,11 +1386,42 @@
                     UI.renderScene(this.state.currentNode);
                 }
                 UI.updateProgress();
+                this.persistState();
                 UI.showTip('读档完成');
+            },
+
+            resetAllData: function() {
+                if (confirm('确定要清除所有游戏进度吗？此操作不可撤销。')) {
+                    localStorage.removeItem('game_auto_save');
+                    localStorage.removeItem('unlocked_endings');
+                    localStorage.removeItem('chengye_explored');
+                    localStorage.removeItem('jiangyanbai_explored');
+                    for (let i = 0; i < 5; i++) {
+                        localStorage.removeItem(`game_save_${i}`);
+                    }
+                    this.state = {
+                        currentView: null,
+                        currentNode: null,
+                        sync: 10,
+                        explore: 0,
+                        visitedNodes: [],
+                        collectedFragments: [],
+                        collectedItems: [],
+                        unlockedEndings: [],
+                        isFastForward: false,
+                        bgmEnabled: false,
+                        lastSaveTime: null
+                    };
+                    UI.updateProgress();
+                    UI.updateViewStatus();
+                    document.getElementById('game-page').style.display = 'none';
+                    document.getElementById('start-page').style.display = 'flex';
+                    UI.showTip('所有数据已清除');
+                    Save.updateAllButtons();
+                }
             }
         };
 
-        // ---------- save.js ----------
         const Save = {
             saveGame: function(slot) {
                 if (slot < 0 || slot > 4) return;
@@ -1342,6 +1429,7 @@
                 state.saveTime = new Date().toLocaleString('zh-CN');
                 localStorage.setItem(`game_save_${slot}`, JSON.stringify(state));
                 this.updateAllButtons();
+                Game.persistState();
                 UI.showTip(`已存档到槽位 ${slot + 1}`);
             },
 
@@ -1387,40 +1475,11 @@
                 }
             },
 
-            deleteSave: function(slot) {
-                if (slot < 0 || slot > 4) return;
-                localStorage.removeItem(`game_save_${slot}`);
-                this.updateAllButtons();
-                UI.showTip(`已删除槽位 ${slot + 1} 的存档`);
-            },
-
-            getAllSaves: function() {
-                const saves = [];
-                for (let i = 0; i < 5; i++) {
-                    const data = localStorage.getItem(`game_save_${i}`);
-                    if (data) {
-                        try {
-                            saves.push({
-                                slot: i,
-                                data: JSON.parse(data)
-                            });
-                        } catch (e) {
-                            saves.push({
-                                slot: i,
-                                data: null
-                            });
-                        }
-                    }
-                }
-                return saves;
-            },
-
             init: function() {
                 this.updateAllButtons();
             }
         };
 
-        // ---------- ui.js ----------
         const UI = {
             typeTimer: null,
 
@@ -1439,15 +1498,12 @@
                 document.getElementById("sync-progress").style.width = `${state.sync}%`;
                 document.getElementById("explore-value").innerText = `${state.explore}%`;
                 document.getElementById("explore-progress").style.width = `${state.explore}%`;
-                
                 const fragCount = state.collectedFragments.length;
                 document.getElementById("frag-text").innerText = `${fragCount} / 10`;
                 document.getElementById("frag-progress").style.width = `${(fragCount/10)*100}%`;
-                
                 const itemCount = state.collectedItems.length;
                 document.getElementById("item-text").innerText = `${itemCount} / 5`;
                 document.getElementById("item-progress").style.width = `${(itemCount/5)*100}%`;
-                
                 const endCount = state.unlockedEndings.length;
                 document.getElementById("end-text").innerText = `${endCount} / 10`;
                 document.getElementById("end-progress").style.width = `${(endCount/10)*100}%`;
@@ -1456,17 +1512,21 @@
             updateViewStatus: function() {
                 const chengyeExplored = localStorage.getItem('chengye_explored') === 'true';
                 const jiangyanbaiExplored = localStorage.getItem('jiangyanbai_explored') === 'true';
-                
                 const chengyeEl = document.getElementById("chengye-status");
                 const jiangEl = document.getElementById("jiangyanbai-status");
-                
                 if (chengyeExplored) {
                     chengyeEl.innerText = "已探索";
                     chengyeEl.classList.add("completed");
+                } else {
+                    chengyeEl.innerText = "未探索";
+                    chengyeEl.classList.remove("completed");
                 }
                 if (jiangyanbaiExplored) {
                     jiangEl.innerText = "已探索";
                     jiangEl.classList.add("completed");
+                } else {
+                    jiangEl.innerText = "未探索";
+                    jiangEl.classList.remove("completed");
                 }
             },
 
@@ -1494,11 +1554,21 @@
 
             renderScene: function(nodeId) {
                 if (!Game.state.currentView) return;
-                
                 const scene = GAME_DATA[Game.state.currentView][nodeId];
                 if (!scene) {
                     console.error('场景不存在', nodeId);
                     return;
+                }
+
+                if (scene.fragment && !Game.state.collectedFragments.includes(scene.fragment)) {
+                    Game.state.collectedFragments.push(scene.fragment);
+                    this.showTip(`获得记忆碎片：${scene.fragment}`);
+                    Game.persistState();
+                }
+                if (scene.item && !Game.state.collectedItems.includes(scene.item)) {
+                    Game.state.collectedItems.push(scene.item);
+                    this.showTip(`获得特殊物品：${scene.item}`);
+                    Game.persistState();
                 }
 
                 const narrateEl = document.getElementById("narrate-text");
@@ -1615,6 +1685,7 @@
                 document.getElementById("ending-page").style.display = "flex";
                 this.showTip(`解锁结局：${endingData.name}`);
                 this.updateProgress();
+                Game.persistState();
             },
 
             hideEnding: function() {
@@ -1666,6 +1737,10 @@
                 this.showTip(Game.state.bgmEnabled ? "音乐开启" : "音乐关闭");
             },
 
+            clearAllData: function() {
+                Game.resetAllData();
+            },
+
             init: function() {
                 this.updateViewStatus();
                 this.updateProgress();
@@ -1678,7 +1753,6 @@
             }
         };
 
-        // 页面加载初始化
         window.addEventListener('load', function() {
             Save.init();
             Game.init();
